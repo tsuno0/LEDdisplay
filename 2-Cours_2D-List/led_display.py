@@ -27,5 +27,5 @@ while True:
     for i in range(myLed.width) :
         myLed.array[i%20] = myLed.array[(i-1)%20]
     myLed.update()
-    #time.sleep(1)
+    time.sleep(1)
     
