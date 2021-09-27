@@ -24,8 +24,19 @@ array = [[N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
 
 myLed = ArrayLED(array)
 while True:
-    for i in range(myLed.width) :
-        myLed.array[i%20] = myLed.array[(i-1)%20]
+    for i, ligne in enumerate(myLed.array):
+        ligne = [ligne[-1]]+ligne[:-1]
+        array[i] = ligne
+#     new_array = []
+#     for ligne in myLed.array:
+#         temp_ligne = [None]
+#         for i, element in enumerate(ligne):
+#             if i < len(ligne)-1:
+#                 temp_ligne.append(element)
+#             else:
+#                 temp_ligne[0] = element
+#         new_array.append(temp_ligne)
+#     myLed.array = new_array
+    
     myLed.update()
-    time.sleep(1)
     
