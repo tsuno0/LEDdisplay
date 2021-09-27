@@ -12,13 +12,13 @@ Voici la liste des outils que j'utilise pour mes projets de programmation :
 
 * [Git](https://git-scm.com/) et [Github](https://github.com/) : Git est un outil de gestion de version alors que  github est une plateforme en ligne qui permet, entre autre, d'héberger  des dépôts Git.
 
-![git](images/5847f981cef1014c0b5e48be.png.crdownload)
+
 
 * [GitHub Desktop](https://desktop.github.com/) : GitHub Desktop est une application qui vous permet d'interagir avec GitHub en utilisant une interface graphique au lieu de la ligne de commande ou d'un navigateur web.
 
 * [Visual studio code](https://code.visualstudio.com/download) : Visual Studio Code est un éditeur de code extensible développé par Microsoft pour Windows, Linux et macOS. Les fonctionnalités incluent la prise en charge du débogage, la mise en évidence de la syntaxe, la complétion intelligente du code, les snippets, la refactorisation du code et Git intégré.
 
-![VS code](images/Visual_Studio_Code_1.35_icon.svg.png)
+
 
 * [Live Share](https://visualstudio.microsoft.com/fr/services/live-share/) : Visual Studio Live Share vous permet de modifier et déboguer tout code en collaborant en temps réel avec d'autres personnes.
 
@@ -60,6 +60,3 @@ Nous pouvons maintenant importer ces bibliothèques dans notre code :
 import neopixel
 from board import *
 ```
-
-
-
