@@ -57,3 +57,5 @@ Le jeu de la vie est complet. [Il est donc possible de programmer n'importe quel
 [Portes Logiques](https://www.youtube.com/watch?v=Kk2MH9O4pXY)
 
 
+https://www.youtube.com/watch?v=S-W0NX97DB0
+
