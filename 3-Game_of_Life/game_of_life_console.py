@@ -1,4 +1,4 @@
-from arrayLED import *
+from arrayConsole import *
 
 array = [[N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
          [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
@@ -8,21 +8,21 @@ array = [[N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
          [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
          [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
          [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
+         [N,N,N,N,N,N,N,N,N,N,N,N,N,B,B,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
+         [N,N,N,N,N,N,N,N,N,N,N,N,N,B,B,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
          [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
          [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
          [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
+         [N,N,N,N,N,N,N,N,N,N,N,N,N,B,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
+         [N,N,N,N,N,N,N,N,N,N,N,N,N,B,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
+         [N,N,N,N,N,N,N,N,N,N,N,N,N,B,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
          [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
          [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
-         [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
-         [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
-         [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
-         [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
-         [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
-         [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
+         [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],fhngtuj
          [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
          [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N]]
 
-myLed = ArrayLED(array)
+myLed = ArrayConsole(array)
 
 def update_life():
     next = [[0 for x in range(myLed.width)] for y in range(myLed.height)] 
@@ -30,39 +30,24 @@ def update_life():
         for j in range(myLed.height):
             neighbors = count_neighbors(i,j)
 
-            if (myLed.pixels[i][j] == 0 and neighbors == 3):
+            if (myLed.array[i][j] == 0 and neighbors == 3):
                 next[i][j] = 1
+            elif (myLed.array[i][j] == 1 and (neighbors < 2 or neighbors > 3)) :
+                next[i][j] = 0
+            else:
+                next[i][j] = myLed.array[i][j]
+    myLed.array = next
 
-  // Compute next based on grid
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      let state = grid[i][j];
-      // Count live neighbors!
-      let sum = 0;
-      let neighbors = countNeighbors(grid, i, j);
+def count_neighbors(x,y):
+    sum = 0
+    for i in range(-1, 2):
+        for j in range(-1, 2):
+            myLed.width = (x + i + myLed.width) % myLed.width
+            myLed.height = (y + j + myLed.height) % myLed.height
+            sum += myLed.array[myLed.width][myLed.height]
+    sum -= myLed.array[x][y]
+    return sum
 
-      if (state == 0 && neighbors == 3) {
-        next[i][j] = 1;
-      } else if (state == 1 && (neighbors < 2 || neighbors > 3)) {
-        next[i][j] = 0;
-      } else {
-        next[i][j] = state;
-      }
-    }
-  }
-
-  grid = next;
-}
-
-function countNeighbors(grid, x, y) {
-  let sum = 0;
-  for (let i = -1; i < 2; i++) {
-    for (let j = -1; j < 2; j++) {
-      let col = (x + i + cols) % cols;
-      let row = (y + j + rows) % rows;
-      sum += grid[col][row];
-    }
-  }
-  sum -= grid[x][y];
-  return sum;
-}
+while True:
+    update_life()    
+    myLed.update()
