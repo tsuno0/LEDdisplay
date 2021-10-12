@@ -17,10 +17,10 @@ pixel_pin = D18
 class ArrayLED:
     def __init__(self, array):
         self.array = array
-        self.size = array.width*array.height
+        self.size = len(array)*len(array[0])
         self.pixels = neopixel.NeoPixel(pixel_pin, self.size, brightness=0.5, auto_write=False, pixel_order=neopixel.GRB)
-        self.width = array.width
-        self.height = array.height
+        self.width = len(array)
+        self.height = len(array[0])
         
 
     def _array_to_pixels(self):

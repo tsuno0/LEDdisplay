@@ -11,13 +11,13 @@ def create_initial_grid():
     grid = [[N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
             [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
             [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
+            [N,N,N,N,N,N,N,N,N,N,N,N,N,N,B,B,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
+            [N,N,N,N,N,N,N,N,N,N,N,N,N,N,B,B,N,N,N,N,N,N,N,N,B,B,B,N,N,N],
             [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
             [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
-            [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
-            [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
-            [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
-            [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
-            [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
+            [N,N,N,N,N,N,N,B,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
+            [N,N,N,N,N,B,N,B,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
+            [N,N,N,N,N,N,B,B,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
             [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
             [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
             [N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N],
@@ -112,20 +112,23 @@ def run_game():
     generations = 5000
 
     # Create the initial random Game of Life grids
-    current_generation = create_initial_grid(rows, cols)
-    next_generation = create_initial_grid(rows, cols)
+    current_generation = create_initial_grid()
+    next_generation = create_initial_grid()
 
     myLED = ArrayLED(current_generation)
 
     # Run Game of Life sequence
     gen = 1
     for gen in range(1, generations + 1):
-        if not grid_changing(rows, cols, current_generation, next_generation):
-            break
+        print("generation :", gen)
+        
         print_grid(rows, cols, current_generation, myLED)
         create_next_grid(rows, cols, current_generation, next_generation)
         time.sleep(1 / 5.0)
         current_generation, next_generation = next_generation, current_generation
+        if not grid_changing(rows, cols, current_generation, next_generation):
+            break
+        
 
     print_grid(rows, cols, current_generation, myLED)
     return input("<Enter> to exit or r to run again: ")
